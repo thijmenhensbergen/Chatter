@@ -1,0 +1,13 @@
+{
+    "require": {
+        "twig/twig": "^3.30"
+    },
+    "autoload": {
+        "files": [
+            "helpers.php"
+        ],
+        "psr-4": {
+            "Controllers\\": "Controllers/"
+        }   
+    }
+}

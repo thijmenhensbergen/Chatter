@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="../CSS/index.css" rel="stylesheet">
+    <script src="../JS/verifytoken.js">
+</head>
+<body style="background-color: #2e3136;" class="d-flex flex-column">
+    <nav class="navbar sticky-top navbar-expand-lg bg-dark border-bottom">
+        <div class="container-fluid">
+            <button type="submit" class="btn btn-primary ms-2" id="roomListButton">BACK</button>
+        <span class="navbar-text mx-auto text-light">
+            ACCOUNT
+        </span>
+        <span class="navbar-text me-2 ms-5 rounded">
+            <img src="https://picsum.photos/32" width="32" height="32">
+        </span>
+        </div>
+    </nav>
+    <div class="container text-center">
+        <div class="row align-items-center justify-content-center" style="min-height: 100vh;">     
+            <div class="col">
+                <img src="https://picsum.photos/512">
+            </div>
+            <div class="col-md-6 col-lg-4 align-items-center d-flex flex-column">
+                <label for="usernameinput" class="text-light">Username</label>                
+                <input class="form-control form-control-lg bg-dark text-light" id="usernameinput" type="text" placeholder="A cool name..." aria-label=".form-control-lg example">
+                <label for="passwordinput" class="text-light">Password</label>                
+                <input class="form-control form-control-lg bg-dark text-light" id="passwordinput" type="text" placeholder="A cool password..." aria-label=".form-control-lg example">
+                <label for="pfpurl" class="text-light">Profile Picture URL</label>
+                <input class="form-control form-control-lg bg-dark text-light" id="pfpurl" type="url" placeholder="A cool PFP..." aria-label=".form-control-lg example">
+                <button type="submit" class="btn btn-primary" id="sendbutton">Update</button>
+            </div>
+        </div
+    </div>
+</body>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="../CSS/index.css" rel="stylesheet">
+    <script src="../JS/verifytoken.js"></script>
+</head>
+<body style="background-color: #2e3136;" class="d-flex flex-column">
+    <nav class="navbar sticky-top navbar-expand-lg bg-dark border-bottom">
+        <div class="container-fluid">
+            <button type="submit" class="btn btn-primary ms-2" id="accountButton">ACC</button>
+        <span class="navbar-text mx-auto text-light">
+            ROOMS
+        </span>
+        <span class="navbar-text me-2 ms-5 rounded">
+            <img src="https://picsum.photos/32" width="32" height="32">
+        </span>
+        </div>
+    </nav>
+    <div class="container text-center text-light">
+        <div class="row row-cols-3 justify-content-center g-5 m-5" id="mainRoomList">
+        </div>
+    </div>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="../JS/roomlist.js"></script>
+</body>

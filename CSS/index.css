@@ -1,0 +1,22 @@
+.mainTextList {
+    margin-top: 3rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    margin-bottom: 8rem;
+}
+
+.dot {
+    height: 100px;
+    width: 100px;
+    background-color: lime;
+    border-radius: 50%;
+    border-color: green;
+    border-width: 4px;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px; 
+    color: #FFFFFF;
+    text-decoration: none;
+}
