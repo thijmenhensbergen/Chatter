@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="../CSS/index.css" rel="stylesheet">
+    {# <script src="../JS/verifytoken.js"></script> #}
+</head>
+<body style="background-color: #2e3136;" class="d-flex flex-column">
+    <nav class="navbar sticky-top navbar-expand-lg bg-dark border-bottom">
+        <div class="container-fluid">
+            <button type="submit" class="btn btn-primary ms-2" id="roomListButton">BACK</button>
+        <span class="navbar-text mx-auto text-light">
+            ADMIN
+        </span>
+        <span class="navbar-text me-2 ms-5 rounded">
+            <img id="pfp" src="https://picsum.photos/32" width="32" height="32">
+        </span>
+        </div>
+    </nav>
+    <nav>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="users-tab" data-bs-toggle="tab" data-bs-target="#users-pane" type="button" role="tab" aria-controls="users-pane" aria-selected="true" style="border-radius: 0">Users</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="rooms-tab" data-bs-toggle="tab" data-bs-target="#rooms-pane" type="button" role="tab" aria-controls="rooms-pane" aria-selected="false" style="border-radius: 0">Rooms</button>
+    </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active p-3 text-center text-light" id="users-pane" role="tabpanel" aria-labelledby="users-tab" tabindex="0">
+            <h5>USERS</h5>
+            <table class= "rounded" id="usertable" style="border-collapse: collapse; width:100%; background-color: #424549">
+                <tr>
+                    <th>Username</th>
+                    <th>PFP URL</th>
+                    <th>Is Admin?</th>
+                    <th>Actions</th>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade p-3" id="rooms-pane" role="tabpanel" aria-labelledby="rooms-tab" tabindex="0">
+            <h5>Profiel</h5>
+            <p>Dit is de inhoud van het tweede tabblad.</p>
+        </div>
+    </div>
+    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formModalLabel">EDIT USER</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                
+                <form action="/edituser" method="POST">
+                    <div class="modal-body">
+                        
+                        <div class="mb-3">
+                            <label for="inputUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="inputUsername" name="Username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPFPURL" class="form-label">PFP URL</label>
+                            <input type="url" class="form-control" id="inputPFPURL" name="PFPURL">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputAdmin" class="form-label">Is Admin?</label>
+                            <input type="checkbox" class="form-check-input" id="inputAdmin" name="Admin">
+                        </div>
+                                        
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="saveButton">SAVE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../JS/admin.js"></script>
+</body>
