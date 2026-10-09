@@ -67,6 +67,7 @@
                             <label for="inputAdmin" class="form-label">Is Admin?</label>
                             <input type="checkbox" class="form-check-input" id="inputAdmin" name="Admin">
                         </div>
+                        <input type="hidden" id="inputID" name="ID">
                                         
                     </div>
                     
@@ -76,6 +77,24 @@
                 </form>
             </div>
         </div>
+    </div>
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Are you sure that you want to delete this user?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <form action="/deleteuser" method="POST">
+                    <input type="hidden" id="inputID2" name="ID">
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger" id="saveButton">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../JS/admin.js"></script>
 </body>

@@ -105,6 +105,66 @@ class Controller
     {
         buildTemplate('admin.twig');
     }
+
+    public function edituser()
+    {
+        $host = '127.0.0.1';
+        $username = "bit_academy";
+        $password = "bit_academy";
+        $dbname = "chatter";
+        try {
+            $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $name = $_POST["Username"];
+            $pfpurl = $_POST["PFPURL"];
+            $adminPOST = $_POST["Admin"];
+            $admin = false;
+            $id = $_POST["ID"];
+            if (isset($adminPOST) && $adminPOST == 'on') {
+                $admin = true;
+            } 
+            $sql = "UPDATE users SET Name = :name, Admin = :admin, PFPURL = :pfpurl WHERE ID = :id";
+            $stmt = $conn->prepare($sql);
+
+            $stmt->execute([
+                ':name'     => $name,
+                ':admin'   => $admin,
+                ':pfpurl'   => $pfpurl,
+                ':id' => $id
+            ]);
+
+
+            $conn = null;
+            echo "<script>window.location.href = '/admin';</script>";
+            exit();
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    public function deleteUser()
+    {
+        $host = '127.0.0.1';
+        $username = "bit_academy";
+        $password = "bit_academy";
+        $dbname = "chatter";
+        try {
+            $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $id = $_POST["ID"];
+            $sql = "DELETE FROM users WHERE ID = :id";
+            $stmt = $conn->prepare($sql);
+
+            $stmt->execute([':id' => $id]);
+
+
+            $conn = null;
+            echo "<script>window.location.href = '/admin';</script>";
+            exit();
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }        
+    }
 }
 
 
