@@ -37,4 +37,18 @@ async function appendRoom(roomID, tag) {
 document.getElementById('accountButton').addEventListener('click', async (e) => {
     window.location.href = window.location.origin + "/account";
 })
+async function checkIfAdminButtonShouldExist() {
+    const response = await verifyAdmin();
+    if (response == true) {
+        console.log("Admin button created");
+        const Button = document.createElement("button");
+        const List = document.getElementById("buttonList");
+        Button.classList = "btn btn-primary";
+        Button.innerText = "ADMIN";
+        Button.onclick = function() {window.location.href = window.location.origin + "/admin"}
+        List.appendChild(Button);
+    }
+}
+
+checkIfAdminButtonShouldExist();
 loadRooms();

@@ -207,6 +207,28 @@ app.get('/api/getprofilebyid', async (req, res) => {
         });
     }
 });
+app.get('/api/getroombyid', async (req, res) => {
+    const id = req.query.id;
+
+    if (!id) {
+        return res.status(400).json({error: 'ID is required'});
+    }
+
+    try {
+        const users = await queryDatabase('SELECT * FROM rooms WHERE ID = ?', [id]);
+
+        if (users.length === 0) {
+            return res.status(404).json({error: 'User not found'});
+        }
+
+        res.json(users[0]);
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({error: error.message});
+    }
+});
 
 app.post('/api/updateAccount', async (req, res) => {
     const {
@@ -237,6 +259,34 @@ app.post('/api/updateAccount', async (req, res) => {
         });
     }
 });
+app.get('/api/verifyadmin', async (req, res) => {
+    const token = req.query.token;
+
+    if (!token) {
+        return res.json(false);
+    }
+
+    try {
+        const users = await queryDatabase(
+            'SELECT * FROM users WHERE token = ? AND Admin = 1',
+            [token]
+        );
+
+        if (users.length === 0) {
+            return res.json(false);
+        }
+
+        return res.json(true);
+
+    } catch (error) {
+        console.error("Admin verification failed:", error);
+
+        return res.status(500).json({
+            error: "Internal Server Error"
+        });
+    }
+});
+
 
 const PORT = 3000;
 

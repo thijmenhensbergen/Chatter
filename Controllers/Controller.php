@@ -165,6 +165,86 @@ class Controller
             echo "Connection failed: " . $e->getMessage();
         }        
     }
+
+    public function addRoom()
+    {
+        $host = '127.0.0.1';
+        $username = "bit_academy";
+        $password = "bit_academy";
+        $dbname = "chatter";
+        try {
+            $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $name = $_POST["Name"];
+            $tag = $_POST["Tag"];
+            $sql = "INSERT INTO rooms (Name, Tag) VALUES (:name, :tag)";
+            $stmt = $conn->prepare($sql);
+
+            $stmt->execute([
+                ':name'  => $name,
+                ':tag'   => $tag,
+            ]);
+
+            $conn = null;
+            echo "<script>window.location.href = '/admin';</script>";
+            exit();
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+    public function editRoom()
+    {
+        $host = '127.0.0.1';
+        $username = "bit_academy";
+        $password = "bit_academy";
+        $dbname = "chatter";
+        try {
+            $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $name = $_POST["Name"];
+            $tag = $_POST["Tag"];
+            $id = $_POST["ID"];
+            $sql = "UPDATE rooms SET Name = :name, Tag = :tag WHERE ID = :id";
+            $stmt = $conn->prepare($sql);
+
+            $stmt->execute([
+                ':name'     => $name,
+                ':tag'   => $tag,
+                ':id' => $id
+            ]);
+
+
+            $conn = null;
+            echo "<script>window.location.href = '/admin';</script>";
+            exit();
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    public function deleteRoom()
+    {
+        $host = '127.0.0.1';
+        $username = "bit_academy";
+        $password = "bit_academy";
+        $dbname = "chatter";
+        try {
+            $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $id = $_POST["ID"];
+            $sql = "DELETE FROM rooms WHERE ID = :id";
+            $stmt = $conn->prepare($sql);
+
+            $stmt->execute([':id' => $id]);
+
+
+            $conn = null;
+            echo "<script>window.location.href = '/admin';</script>";
+            exit();
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }        
+    }
 }
 
 

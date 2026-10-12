@@ -33,9 +33,7 @@ async function loadExistingMessages() {
     const roomID = url.searchParams.get("room");
 
     try {
-        const response = await fetch(
-            `http://localhost:3000/api/messages?RoomID=${encodeURIComponent(roomID)}`
-        );
+        const response = await fetch(`http://localhost:3000/api/messages?RoomID=${encodeURIComponent(roomID)}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
@@ -49,10 +47,7 @@ async function loadExistingMessages() {
             try {
                 const account = await getAccountByID(msg.AccountID);
 
-                appendMessage(
-                    account.Name,
-                    msg.Body
-                );
+                appendMessage(account.Name, msg.Body);
             } catch (err) {
                 console.error('Could not get account:', err);
                 appendMessage('Unknown User', msg.Body);
@@ -175,4 +170,19 @@ document.getElementById('roomListButton').addEventListener('click', () => {
     window.location.href = window.location.origin;
 });
 
+async function loadRoomInfo() {
+    console.log("yay")
+    try {
+        const url = new URL(window.location.href);
+        const roomID = url.searchParams.get("room");
+        const Response = await fetch(`http://localhost:3000/api/getroombyid?id=${encodeURIComponent(roomID)}`);
+        const json = await Response.json();
+        const NameText = document.getElementById("nameText");
+        NameText.innerText = json.Name;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 loadExistingMessages();
+loadRoomInfo();

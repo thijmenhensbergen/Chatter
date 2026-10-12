@@ -38,17 +38,26 @@
                 </tr>
             </table>
         </div>
-        <div class="tab-pane fade p-3" id="rooms-pane" role="tabpanel" aria-labelledby="rooms-tab" tabindex="0">
-            <h5>Profiel</h5>
-            <p>Dit is de inhoud van het tweede tabblad.</p>
+        <div class="tab-pane fade p-3 text-center text-light" id="rooms-pane" role="tabpanel" aria-labelledby="rooms-tab" tabindex="0">
+            <h5>ROOMS</h5>
+            <div class="d-grid gap-2">
+                <button class="btn btn-success rounded-0 rounded-top" type="button" data-bs-toggle="modal" data-bs-target="#addModalROOM">CREATE</button>
+            </div>
+            <table class= "rounded" id="roomtable" style="border-collapse: collapse; width:100%; background-color: #424549">
+                <tr>
+                    <th>Name</th>
+                    <th>Tag</th>
+                    <th>Actions</th>
+                </tr>
+            </table>
         </div>
     </div>
-    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal fade" id="formModalUSER" tabindex="-1" aria-labelledby="formModalUSERLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 
                 <div class="modal-header">
-                    <h5 class="modal-title" id="formModalLabel">EDIT USER</h5>
+                    <h5 class="modal-title" id="formModalUSERLabel">EDIT USER</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
                 </div>
                 
@@ -78,12 +87,12 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModalUSER" tabindex="-1" aria-labelledby="deleteModalUSERLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Are you sure that you want to delete this user?</h5>
+                    <h5 class="modal-title" id="deleteModalUSERLabel">Are you sure that you want to delete this user?</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
                 </div>
                 <form action="/deleteuser" method="POST">
@@ -95,6 +104,83 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="formModalROOM" tabindex="-1" aria-labelledby="formModalROOMLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formModalROOMLabel">EDIT ROOM</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                
+                <form action="/editroom" method="POST">
+                    <div class="modal-body">
+                        
+                        <div class="mb-3">
+                            <label for="inputName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="inputName" name="Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputTag" class="form-label">TAG</label>
+                            <input type="text" class="form-control" id="inputTag" name="Tag" maxlength="3" minlength="3">
+                        </div>
+                        <input type="hidden" id="inputID3" name="ID">           
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="saveButtonROOM">SAVE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteModalROOM" tabindex="-1" aria-labelledby="deleteModalROOMlabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalROOMlabel">Are you sure that you want to delete this room?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <form action="/deleteroom" method="POST">
+                    <input type="hidden" id="inputID4" name="ID">
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger" id="saveButton">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addModalROOM" tabindex="-1" aria-labelledby="addModalROOMLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalROOMLabel">CREATE ROOM</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                
+                <form action="/addroom" method="POST">
+                    <div class="modal-body">
+                        
+                        <div class="mb-3">
+                            <label for="inputName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="inputName" name="Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputTag" class="form-label">Tag</label>
+                            <input type="text" class="form-control" id="inputTag" name="Tag" maxlength="3" minlength="3">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="saveButtonROOM">CREATE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../JS/verifyadmin.js"></script>
     <script src="../JS/admin.js"></script>
 </body>

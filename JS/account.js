@@ -51,4 +51,7 @@ document.getElementById('updateButton').addEventListener('click', async (e) => {
     }
 
 });
+document.getElementById('roomListButton').addEventListener('click', () => {
+    window.location.href = window.location.origin;
+});
 getExistingData();
