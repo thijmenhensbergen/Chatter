@@ -287,6 +287,27 @@ app.get('/api/verifyadmin', async (req, res) => {
     }
 });
 
+app.post('/api/deletemessage', async (req, res) => {
+    const {ID} = req.body;
+    console.log("delete message");
+    try {
+        await queryDatabase('DELETE FROM messages WHERE ID = ?', [ID]);
+
+
+        io.emit('delete_message', {
+            ID: ID,
+        });
+
+        res.status(201).json({
+            success: true
+        });
+
+    } catch (err) {
+        console.error(err);
+
+        res.status(500).json({error: err.message});
+    }
+});
 
 const PORT = 3000;
 

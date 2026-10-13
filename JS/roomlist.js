@@ -49,6 +49,23 @@ async function checkIfAdminButtonShouldExist() {
         List.appendChild(Button);
     }
 }
+async function getAccountByToken() {
+    const token = localStorage.getItem('accountToken');
+    const response = await fetch(`http://localhost:3000/api/getprofilebytoken?token=${encodeURIComponent(token)}`);
 
+    if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+    }
+
+    return await response.json();
+}
+
+async function loadUserInfo()
+{
+    const user = await getAccountByToken();
+    const pfpIcon = document.getElementById('pfpicon');
+    pfpIcon.src = user.PFPURL;
+}
 checkIfAdminButtonShouldExist();
 loadRooms();
+loadUserInfo();
