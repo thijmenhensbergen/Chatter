@@ -73,16 +73,17 @@ app.post('/api/messages', async (req, res) => {
     try {
         await queryDatabase('INSERT INTO messages (accountid, body, RoomID) VALUES (?, ?, ?)', [AccountID, message_text, roomID]);
 
-        const users = await queryDatabase('SELECT Name FROM users WHERE ID = ?', [AccountID]);
+        const users = await queryDatabase('SELECT Name, PFPURL, Color FROM users WHERE ID = ?', [AccountID]);
 
         if (users.length === 0) {
             return res.status(404).json({error: 'User not found'});
         }
-
         io.emit('new_message', {
             AccountID: AccountID,
             username: users[0].Name,
             text: message_text,
+            PFPURL: users[0].PFPURL,
+            Color: users[0].Color,
             RoomID: roomID
         });
 
@@ -234,15 +235,17 @@ app.post('/api/updateAccount', async (req, res) => {
     const {
         NewUsername,
         NewPFPURL,
+        NewColor,
         Token
     } = req.body;
-
+    console.log(req.body);
     try {
         await queryDatabase(
-            'UPDATE users SET Name = ?, PFPURL = ? WHERE Token = ?',
+            'UPDATE users SET Name = ?, PFPURL = ?, Color = ? WHERE Token = ?',
             [
                 NewUsername,
                 NewPFPURL,
+                NewColor,
                 Token
             ]
         );

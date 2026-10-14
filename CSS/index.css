@@ -8,9 +8,9 @@
 .dot {
     height: 100px;
     width: 100px;
-    background-color: lime;
+    background-color: green;
     border-radius: 50%;
-    border-color: green;
+    border-color: lime;
     border-width: 4px;
     border-style: solid;
     display: flex;

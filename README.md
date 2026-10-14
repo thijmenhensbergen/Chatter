@@ -13,7 +13,7 @@ Database support.
 Install Instructions (to run locally)
 1. Download the project.
 2. Import chatter.sql in your database.
-3. In the base repository, run 'node server.js' in the terminal.
+3. In the base repository, run 'node server.js' in the terminal. (you probably need node for this)
 4. go to localhost
 
 Languages:

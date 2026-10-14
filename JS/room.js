@@ -12,7 +12,8 @@ socket.on('new_message', (data) => {
     console.log('New message:', data);
 
     if (data.RoomID == roomID) {
-        appendMessage(data.username, data.text, data.ID);
+        appendMessage(data.username, data.text, data.PFPURL, data.Color, data.ID);
+        console.log(data);
     }
 });
 
@@ -65,7 +66,7 @@ async function loadExistingMessages() {
             try {
                 const account = await getAccountByID(msg.AccountID);
 
-                appendMessage(account.Name, msg.Body, account.PFPURL, msg.ID);
+                appendMessage(account.Name, msg.Body, account.PFPURL, account.Color, msg.ID);
             } catch (err) {
                 console.error('Could not get account:', err);
                 appendMessage('Unknown User', msg.Body);
@@ -77,9 +78,9 @@ async function loadExistingMessages() {
     }
 }
 
-async function appendMessage(username, text, imgsrc, id) {
+async function appendMessage(username, text, imgsrc, color, id) {
     const container = document.createElement('div');
-    container.className = 'd-flex flex-row mb-3';
+    container.className = 'd-flex flex-row mb-3 text-light';
 
     const img = document.createElement('img');
     img.src = imgsrc;
@@ -88,16 +89,16 @@ async function appendMessage(username, text, imgsrc, id) {
     img.className = 'rounded';
 
     const content = document.createElement('div');
-    content.className = 'd-flex flex-column text-light ms-2 mt-1';
-
+    content.className = 'd-flex flex-column ms-2 mt-1 text-wrap text-break';
     const usernameElement = document.createElement('p');
     usernameElement.className = 'fw-bold mb-0';
     usernameElement.textContent = username;
+    usernameElement.style.color = color;
+    usernameElement.style.fontSize = '12px';
 
     const messageElement = document.createElement('p');
     messageElement.className = 'mb-0';
     messageElement.textContent = text;
-
 
     content.appendChild(usernameElement);
     content.appendChild(messageElement);
