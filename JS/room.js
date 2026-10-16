@@ -79,6 +79,7 @@ async function loadExistingMessages() {
 }
 
 async function appendMessage(username, text, imgsrc, color, id) {
+    console.log(text);
     const container = document.createElement('div');
     container.className = 'd-flex flex-row mb-3 text-light';
 
@@ -99,6 +100,7 @@ async function appendMessage(username, text, imgsrc, color, id) {
     const messageElement = document.createElement('p');
     messageElement.className = 'mb-0';
     messageElement.textContent = text;
+    messageElement.style.whiteSpace = 'pre-wrap'
 
     content.appendChild(usernameElement);
     content.appendChild(messageElement);
@@ -135,7 +137,15 @@ async function deleteMessage(id)
     }
 }
 
-document.getElementById('sendbutton').addEventListener('click', async () => {
+document.getElementById('sendbutton').addEventListener('click', submitMessage);
+
+document.getElementById('textinput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && event.shiftKey === false) {
+        event.preventDefault();
+        document.getElementById('sendbutton').click();
+    }
+});
+async function submitMessage() {
     const input = document.getElementById('textinput');
     const messageText = input.value.trim();
 
@@ -204,8 +214,7 @@ document.getElementById('sendbutton').addEventListener('click', async () => {
     } catch (err) {
         console.error('Error', err);
     }
-});
-
+}
 
 document.getElementById('roomListButton').addEventListener('click', () => {
     window.location.href = window.location.origin;
@@ -230,6 +239,8 @@ async function loadUserInfo()
     const pfpIcon = document.getElementById('pfpicon');
     pfpIcon.src = user.PFPURL;
 }
+
+
 
 loadExistingMessages();
 loadRoomInfo();

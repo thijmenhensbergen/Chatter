@@ -28,7 +28,11 @@ async function loadRooms() {
 async function appendRoom(roomID, tag) {
     const roomHTML = `
         <div class="col d-flex justify-content-center">
-            <a href="/room?room=${roomID}"><div class="dot">${tag}</div></a>
+            <a href="/room?room=${roomID}" class="room-link">
+                <div class="dot">
+                    <span class="dot-text">${tag}</span>
+                </div>
+            </a>
         </div>
     `;
     const roomList = document.getElementById('mainRoomList');
